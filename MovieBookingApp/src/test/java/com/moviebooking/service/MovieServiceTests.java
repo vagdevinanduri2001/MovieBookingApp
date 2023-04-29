@@ -143,6 +143,25 @@ public class MovieServiceTests {
         assertThat(movieList).isNotNull();
         assertThat(movieList.size()).isEqualTo(2);
     }
+    @Test
+    public void searchMovieByTheatreNameTest(){
+        MovieId movieComp1 = new MovieId("movieName", "Carnival");
+        Movie movie2 = new Movie(movieComp1, 1, 100.00, 100, 1, "Available");
+
+        when(movieRepository.findByMovieIdTheatreName("theatreName")).thenReturn(List.of(movie, movie2));
+        List<Movie> movieList = movieService.searchMoviesByTheatreName("theatreName");
+        assertThat(movieList).isNotNull();
+        assertThat(movieList.size()).isEqualTo(2);
+    }
+    @Test
+    public void searchMovieByMovieIdTest(){
+        MovieId movieComp1 = new MovieId("movieName", "Carnival");
+        Movie movie2 = new Movie(movieComp1, 1, 100.00, 100, 1, "Available");
+
+        when(movieRepository.findByMovieIdMovieNameAndMovieIdTheatreName("movieName","theatreName")).thenReturn(movie);
+        Movie result = movieService.searchByMovieId("movieName","theatreName");
+        assertThat(result).isNotNull();
+    }
 
     @Test
     public void deleteMovie_Success(){

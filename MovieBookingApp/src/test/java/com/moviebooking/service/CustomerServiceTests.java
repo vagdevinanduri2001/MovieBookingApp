@@ -3,6 +3,7 @@ package com.moviebooking.service;
 import com.moviebooking.entity.Customer;
 import com.moviebooking.exception.CommonException;
 import com.moviebooking.exception.CustomerAlreadyExistsException;
+import com.moviebooking.exception.CustomerNotFoundException;
 import com.moviebooking.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,6 +73,25 @@ public class CustomerServiceTests {
         CommonException e = assertThrows(CommonException.class,()->{customerService.registerCustomer(customer1);});
         verify(customerRepository, never()).save(any(Customer.class));
         assertEquals("Password and confirm Password fields must be equal.",e.getMessage());
+    }
+    @Test
+    public void forgotPassword_Success(){
+        when(customerRepository.findByUserName("user123")).thenReturn(Optional.of(customer));
+        String result = customerService.forgotPassword("user123","pass123");
+        assertEquals("password updated successfully",result);
+    }
+    @Test
+    public void forgotPassword_CommonException(){
+        when(customerRepository.findByUserName("user123")).thenReturn(Optional.of(customer));
+        CommonException e = assertThrows(CommonException.class,()->{customerService.forgotPassword("user123","");});
+        verify(customerRepository, never()).save(any(Customer.class));
+        assertEquals("password cannot be null",e.getMessage());
+    }
+    @Test
+    public void forgotPassword_CustomerException(){
+        CustomerNotFoundException e = assertThrows(CustomerNotFoundException.class,()->{customerService.forgotPassword("user123","pass123");});
+        verify(customerRepository, never()).save(any(Customer.class));
+        assertEquals("Customer not found with username: user123",e.getMessage());
     }
 
 }
