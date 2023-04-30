@@ -31,45 +31,39 @@ public class TicketServiceImpl implements TicketService {
         Optional<Movie> movie = movieRepository.findById(movieId);
         if (movie.isPresent()) {
             int availableTickets = movie.get().getNoOfTicketsAllotted() - movie.get().getNoOfTicketsSold();
-
+        if(ticket.getNoOfTickets()==ticket.getSeats().size()) {
             if (availableTickets > ticket.getNoOfTickets()) {
                 List<Seat> seatss = ticket.getSeats();
                 List<Seat> seats = new ArrayList<>();
-                for(Seat s:seatss){
-                	Seat seat = seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(),movie.get().getId());
-//                    Seat seat = seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(),s.getMovie().getId());
+                for (Seat s : seatss) {
+                    Seat seat = seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(), movie.get().getId());
                     seats.add(seat);
                 }
-                double cost=0;
-                for(Seat s:seats){
-                    if(s.getSeatStatus().equals(SeatStatus.Booked)){
-                        throw new CommonException( s.getSeatNumber()+" is already booked.Please select a new seat");
-                    }else{
-                    s.setSeatStatus(SeatStatus.Booked);
-                    cost += s.getCost();
-                    seatRepository.save(s);
-                }
+                double cost = 0;
+                for (Seat s : seats) {
+                    if (s.getSeatStatus().equals(SeatStatus.Booked)) {
+                        throw new CommonException(s.getSeatNumber() + " is already booked.Please select a new seat");
+                    } else {
+                        s.setSeatStatus(SeatStatus.Booked);
+                        cost += s.getCost();
+                        seatRepository.save(s);
+                    }
                 }
                 ticket.setTicketId(sequenceGenerator.getSequenceNumber(Ticket.SEQUENCE_NAME));
-                ticket.setTotalCost((ticket.getNoOfTickets() * movie.get().getCostOfTicket())+cost);
+                ticket.setTotalCost((ticket.getNoOfTickets() * movie.get().getCostOfTicket()) + cost);
                 movie.get().setNoOfTicketsSold(movie.get().getNoOfTicketsSold() + ticket.getNoOfTickets());
                 movieRepository.save(movie.get());
                 return ticketRepository.save(ticket);
             } else {
                 throw new CommonException("Tickets not available");
             }
+        }else{
+            throw new CommonException("No.of seats selected should be equal size of seats list");
+        }
         } else {
             throw new MovieNotFoundException("Movie not found");
         }
 
     }
 
-//    public boolean checkSeatStatus(Seat seat){
-//        if(seat.getSeatStatus().equals(SeatStatus.Available)){
-//            return true;
-//        }
-//        else{
-//            return false;
-//        }
-//    }
 }

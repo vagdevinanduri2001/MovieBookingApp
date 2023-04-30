@@ -73,6 +73,13 @@ public class TicketServiceTests {
         CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(ticket);});
         assertEquals("Tickets not available",e.getMessage());
     }
+    @Test
+    public void addMovie_SizeCommonException(){
+        when(movieRepository.findById(movieId)).thenReturn(Optional.of(movie));
+        ticket.setNoOfTickets(2);
+        CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(ticket);});
+        assertEquals("No.of seats selected should be equal size of seats list",e.getMessage());
+    }
 
     @Test
     public void addMovie_MovieNotFoundException(){

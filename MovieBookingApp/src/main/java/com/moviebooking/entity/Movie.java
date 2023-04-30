@@ -1,5 +1,6 @@
 package com.moviebooking.entity;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,9 @@ public class Movie {
     @Id
     private MovieId movieId;
     private int id;
+    @NotNull(message = "costOfTicket cannot be null")
     private double costOfTicket;
+    @NotNull(message = "noOfTicketsAllotted cannot be null")
     private int noOfTicketsAllotted;
     private int noOfTicketsSold;
     private String ticketStatus="Book ASAP";
