@@ -6,6 +6,7 @@ import com.moviebooking.exception.CommonException;
 import com.moviebooking.exception.MovieAlreadyExistsException;
 import com.moviebooking.exception.MovieNotFoundException;
 import com.moviebooking.service.MovieServiceImpl;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class MovieController {
 Logger logger = LoggerFactory.getLogger(MovieController.class);
     @PostMapping("/addMovie")
     @PreAuthorize("hasAuthority('Admin')")
-    public ResponseEntity<?> addMovie(@RequestBody Movie movie) {
+    public ResponseEntity<?> addMovie(@Valid @RequestBody Movie movie) {
         try {
             Movie movie1 = movieService.addMovie(movie);
             logger.info("----------------Movie created successfully!------------------");

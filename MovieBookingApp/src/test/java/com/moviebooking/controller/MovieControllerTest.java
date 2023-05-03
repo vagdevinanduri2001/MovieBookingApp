@@ -207,16 +207,17 @@ public class MovieControllerTest {
                 .andExpect(content().string("Movie Deleted!"))
                 .andDo(print());
     }
-//    @Test
-//    public void deleteTest_Exception() throws Exception {
-//        doThrow(new MovieNotFoundException("Movie does not exist to delete")).when(movieService).deleteMovieById(movieId);
-////        when(movieService.deleteMovieById(movieId)).thenThrow(new MovieNotFoundException("Movie does not exist to delete"));
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .delete("/moviebooking/delete/movieName/TheatreName")
-//                        .header("Authorization","Bearer "+"token"))
-//                .andExpect(status().isNotAcceptable())
-//                .andExpect(content().string("Movie does not exist to delete"))
-//                .andDo(print());
-//    }
+    @Test
+    public void deleteTest_Exception() throws Exception {
+        doThrow(new MovieNotFoundException("Movie does not exist to delete")).when(movieService).deleteMovieById(any(MovieId.class));
+//        when(movieService.deleteMovieById(movieId)).thenThrow(new MovieNotFoundException("Movie does not exist to delete"));
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/moviebooking/delete/movieName/TheatreName")
+                        .header("Authorization","Bearer "+"token")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("Movie does not exist to delete"))
+                .andDo(print());
+    }
 
 }

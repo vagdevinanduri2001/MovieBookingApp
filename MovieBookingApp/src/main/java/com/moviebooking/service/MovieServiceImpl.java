@@ -8,6 +8,7 @@ import com.moviebooking.exception.CommonException;
 import com.moviebooking.exception.MovieAlreadyExistsException;
 import com.moviebooking.exception.MovieNotFoundException;
 import com.moviebooking.repository.MovieRepository;
+import com.moviebooking.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class MovieServiceImpl implements MovieService{
     private MovieRepository movieRepository;
     @Autowired
     private SeatService seatService;
+    @Autowired
+    private SeatRepository seatRepository;
     @Autowired
     private KafkaTemplate<String, Movie> kafkaTemplate;
     @Autowired
@@ -101,7 +104,9 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public void deleteMovieById(MovieId movieId) {
         if(movieRepository.existsByMovieId(movieId)) {
+            List<Seat> seats = seatRepository.findByMovieMovieId(movieId);
             movieRepository.deleteById(movieId);
+            seatRepository.deleteAll(seats);
         }else{
             throw new MovieNotFoundException("Movie does not exist to delete");
         }

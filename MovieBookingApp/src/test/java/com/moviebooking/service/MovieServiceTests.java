@@ -8,6 +8,7 @@ import com.moviebooking.exception.CommonException;
 import com.moviebooking.exception.MovieAlreadyExistsException;
 import com.moviebooking.exception.MovieNotFoundException;
 import com.moviebooking.repository.MovieRepository;
+import com.moviebooking.repository.SeatRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,6 +39,8 @@ public class MovieServiceTests {
     private KafkaTemplate kafkaTemplate;
     @Mock
     private SequenceGenerator sequenceGenerator;
+    @Mock
+    private SeatRepository seatRepository;
     private Movie movie;
     private Movie movie1;
     private MovieId movieId;
