@@ -1,0 +1,29 @@
+<div class="container mt-3">
+    <div class="card mx-auto mt-5 loginForm" style="padding: 20px;border: 1px solid black;">
+        <h1 class="text-center"><b>Login to book and view Movies!</b></h1>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>UserName</mat-label>
+                <input matInput type="text" #nameField="ngModel" ngModel name="userName" id="userName"
+                placeholder="Enter your userName" required>
+                <mat-hint>UserName</mat-hint>
+                <mat-error>UserName is required</mat-error>
+              </mat-form-field></p>
+
+              <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" ngModel name="password" id="password"
+                 placeholder="Enter your password" minlength="7" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint>Password</mat-hint>
+                <mat-error>Password is required</mat-error>
+              </mat-form-field></p>
+
+              <div class="text-center">
+                <button mat-raised-button type="submit" class="w-100 text-center" color="primary">Login</button>
+              </div>
+        </form>
+    </div>
+</div>

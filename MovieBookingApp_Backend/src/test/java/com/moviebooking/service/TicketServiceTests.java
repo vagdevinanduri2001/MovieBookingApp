@@ -36,6 +36,7 @@ public class TicketServiceTests {
     private Ticket ticket;
     private Movie movie;
     private MovieId movieId;
+    private Customer customer;
 
     private Seat seat1;
 
@@ -46,14 +47,15 @@ public class TicketServiceTests {
         seat1 = new Seat(1, 2, "Balcony", SeatStatus.Available, 100.0, movie);
         //Seat seat2 = new Seat(1, 2, "Balcony", SeatStatus.Available, 100.0, movie);
         List<Seat> seats = List.of(seat1);
-        ticket = new Ticket(1,"movieName","theatreName",100.00,1,seats);
+        customer = new Customer("userFirst", "userLast", "abc@gmail.com", 1, "user123", "pass123", "pass123", 1111111111, "user");
+        ticket = new Ticket(1,"movieName","theatreName",100.00,1,seats,customer);
     }
 
     @Test
     public void addMovie_Success(){
         when(movieRepository.findById(movieId)).thenReturn(Optional.of(movie));
         when(seatRepository.findBySeatNumberAndMovieId(2,1)).thenReturn(seat1);
-        ticketService.addTicket(ticket);
+        ticketService.addTicket(customer,ticket);
         verify(movieRepository,times(1)).save(movie);
     }
 
@@ -62,7 +64,7 @@ public class TicketServiceTests {
         seat1.setSeatStatus(SeatStatus.Booked);
         when(movieRepository.findById(movieId)).thenReturn(Optional.of(movie));
         when(seatRepository.findBySeatNumberAndMovieId(2,1)).thenReturn(seat1);
-        CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(ticket);});
+        CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(customer,ticket);});
         assertEquals("2 is already booked.Please select a new seat",e.getMessage());
     }
 
@@ -70,21 +72,21 @@ public class TicketServiceTests {
     public void addMovie_CommonException(){
         when(movieRepository.findById(movieId)).thenReturn(Optional.of(movie));
         movie.setNoOfTicketsSold(movie.getNoOfTicketsAllotted());
-        CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(ticket);});
+        CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(customer,ticket);});
         assertEquals("Tickets not available",e.getMessage());
     }
     @Test
     public void addMovie_SizeCommonException(){
         when(movieRepository.findById(movieId)).thenReturn(Optional.of(movie));
         ticket.setNoOfTickets(2);
-        CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(ticket);});
+        CommonException e = assertThrows(CommonException.class,()->{ticketService.addTicket(customer,ticket);});
         assertEquals("No.of seats selected should be equal size of seats list",e.getMessage());
     }
 
     @Test
     public void addMovie_MovieNotFoundException(){
         when(movieRepository.findById(movieId)).thenReturn(Optional.empty());
-        MovieNotFoundException e = assertThrows(MovieNotFoundException.class,()->{ticketService.addTicket(ticket);});
+        MovieNotFoundException e = assertThrows(MovieNotFoundException.class,()->{ticketService.addTicket(customer,ticket);});
         assertEquals("Movie not found",e.getMessage());
     }
 }

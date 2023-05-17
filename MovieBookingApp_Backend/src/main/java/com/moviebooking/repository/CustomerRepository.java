@@ -11,6 +11,7 @@ public interface CustomerRepository extends MongoRepository<Customer,Integer> {
 
     boolean existsByEmailId(String emailId);
     boolean existsByLoginId(int loginId);
+    boolean existsByUserName(String userName);
 
     Optional<Customer> findByUserName(String userName);
 

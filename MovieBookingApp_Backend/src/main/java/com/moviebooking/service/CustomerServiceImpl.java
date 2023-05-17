@@ -22,7 +22,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer registerCustomer(Customer customer) throws Exception {
-        if (customerRepository.existsByEmailId(customer.getEmailId())) {
+        if(customerRepository.existsByUserName(customer.getUserName())){
+            throw new CustomerAlreadyExistsException("Customer already existed with this userName!");
+        }else if (customerRepository.existsByEmailId(customer.getEmailId())) {
             throw new CustomerAlreadyExistsException("Customer already existed with this email!");
         } else if (customerRepository.existsByLoginId(customer.getLoginId())) {
             throw new CustomerAlreadyExistsException("Customer exists with this login Id!");

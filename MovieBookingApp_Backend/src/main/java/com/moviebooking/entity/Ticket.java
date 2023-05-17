@@ -33,4 +33,6 @@ public class Ticket {
     private int noOfTickets;
     @NotNull(message = "seats cannot be null")
     private List<Seat> seats;
+
+    private Customer customer;
 }

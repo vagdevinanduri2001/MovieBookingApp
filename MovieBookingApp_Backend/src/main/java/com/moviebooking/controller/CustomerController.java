@@ -18,7 +18,7 @@ import com.moviebooking.service.CustomerServiceImpl;
 
 import jakarta.validation.Valid;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class CustomerController {
     @Autowired

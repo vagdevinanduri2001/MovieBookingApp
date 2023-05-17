@@ -1,8 +1,6 @@
 package com.moviebooking.entity;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,19 +36,24 @@ public class Customer {
 
     @Id
     private int loginId;
+
+
     @NotNull(message = "userName cannot be null")
     @NotBlank(message = "userName must be given")
-    @Indexed(unique = true)
     private String userName;
+
+
     @NotNull(message = "password cannot be null")
     @NotBlank(message = "password must be given")
+    @Pattern(regexp = ".*[a-zA-Z]+.*",message = "password must have atleast an alphabetic character")
+//    @Min(value = 7,message = "password must have minimum 7 characters")
     private String password;
+
     @NotNull(message = "confirmPassword cannot be null")
     @NotBlank(message = "confirmPassword must be given")
     private String confirmPassword;
     @NotNull(message = "contactNo cannot be null")
     private long contactNo;
-    @NotNull(message = "role cannot be null")
-    @NotBlank(message = "role must be given")
-    private String role;
+
+    private String role="user";
 }

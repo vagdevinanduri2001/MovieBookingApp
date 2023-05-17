@@ -26,7 +26,8 @@ public class TicketServiceImpl implements TicketService {
     private SeatRepository seatRepository;
 
     @Override
-    public Ticket addTicket(Ticket ticket) {
+    public Ticket addTicket(Customer customer, Ticket ticket) {
+        ticket.setCustomer(customer);
         MovieId movieId = new MovieId(ticket.getMovieName(), ticket.getTheatreName());
         Optional<Movie> movie = movieRepository.findById(movieId);
         if (movie.isPresent()) {
