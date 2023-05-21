@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
@@ -8,24 +6,31 @@ import { ApiServiceService } from '../services/api-service.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-hide=true;
+export class HomeComponent implements OnInit{
 
-constructor(
-  private router : Router,
-  private apiService : ApiServiceService
-){}
+  allMovies:any =[];
 
-register(registerForm:NgForm){
-    this.apiService.register(registerForm.value).subscribe(
+  constructor(
+    private api:ApiServiceService
+  ){}
+  ngOnInit(): void {
+    this.getAllMovies();
+  }
+  searchByKeyword(searchKey:any){
+      console.log(searchKey);
+      this.allMovies=[]
+      this.getAllMovies(searchKey)
+  }
+
+  public getAllMovies(searchKeyword:string=""){
+    this.api.search(searchKeyword).subscribe(
       (response)=>{
-        this.router.navigate(['/login']);
-      },
-      (error)=>{
+        console.log(response);
+        this.allMovies=response;
+      },(error)=>{
         console.log(error);
-        alert(error.error)
       }
-      )
-}
+    )
+  }
 
 }

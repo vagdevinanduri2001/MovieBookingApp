@@ -87,6 +87,11 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
+    public List<Movie> searchByMovieOrTheatreNames(String searchKeyword) {
+        return movieRepository.findByMovieNameOrTheatreName(searchKeyword);
+    }
+
+    @Override
     public List<Movie> searchMoviesByMovieName(String movieName) {
 
         return movieRepository.findByMovieIdMovieName(movieName);

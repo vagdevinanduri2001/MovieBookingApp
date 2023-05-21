@@ -63,14 +63,14 @@ public class CustomerTests {
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Customer user1 = new Customer("","","",0,"","","",0,"");
         Set<ConstraintViolation<Customer>> constraintViolations = validator.validate(user1);
-        assertEquals(7,constraintViolations.size());
+        assertEquals(6,constraintViolations.size());
     }
     @Test
     void notNullTest(){
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Customer user1 = new Customer(null,null,null,0,null,null,null,0,null);
         Set<ConstraintViolation<Customer>> constraintViolations = validator.validate(user1);
-        assertEquals(14,constraintViolations.size());
+        assertEquals(12,constraintViolations.size());
     }
 
 }

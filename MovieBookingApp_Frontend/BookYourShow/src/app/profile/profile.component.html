@@ -1,0 +1,71 @@
+<mat-card class="mt-3 container example-card w-50 mx-auto">
+    <div class="mx-auto">
+        <mat-card-header>
+            <b>
+                <h1 class="header-class">Profile<mat-icon>account_circle</mat-icon></h1>
+            </b>
+        </mat-card-header>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="mx-auto mt-3 ml-2">
+        <p color="accent">Name : </p>
+    </div>
+    <div class="mx-auto">
+        <p class="values"> {{customer.firstName}} {{customer.lastName}}</p>
+    </div>
+
+    <div class="w-25 mx-auto"><mat-divider></mat-divider></div>
+
+    <div class="mx-auto mt-2 ml-2">
+        <p>Email Id : </p>
+    </div>
+    <div class="mx-auto">
+        <p class="values"> {{customer.emailId}}</p>
+    </div>
+
+    <div class="w-25 mx-auto"><mat-divider></mat-divider></div>
+
+    <div class="mx-auto mt-2 ml-2">
+        <p>UserName : </p>
+    </div>
+    <div class="mx-auto">
+        <p class="values"> {{customer.userName}}</p>
+    </div>
+
+    <div class="w-25 mx-auto"><mat-divider></mat-divider></div>
+
+    <div class="mx-auto mt-2 ml-2">
+        <p>Login Id : </p>
+    </div>
+    <div class="mx-auto">
+        <p class="values"> {{customer.loginId}}</p>
+    </div>
+
+
+    <div class="w-25 mx-auto"><mat-divider></mat-divider></div>
+
+    <div class="mx-auto mt-2 ml-2">
+        <p>Contact Number : </p>
+    </div>
+    <div class="mx-auto">
+        <p class="values"> {{customer.contactNo}}</p>
+    </div>
+
+    <div class="w-25 mx-auto"><mat-divider></mat-divider></div>
+
+    <div class="mx-auto mt-2 ml-2">
+        <p>Role : </p>
+    </div>
+    <div class="mx-auto">
+        <p class="values"> {{customer.role}}</p>
+    </div>
+
+    <div class="w-25 mx-auto"><mat-divider></mat-divider></div>
+
+    <div class="mx-auto mt-2 ml-2">
+        <button mat-raised-button routerLink="/forgot">Change password</button>
+    </div>
+
+</mat-card>

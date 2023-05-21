@@ -47,9 +47,9 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/{userName}/forgot")
-    @PreAuthorize(value = "hasAuthority('User')")
-    public ResponseEntity<?> forgotPassword(@RequestHeader("Authorization") String token, @PathVariable String userName, @RequestBody String password) {
+    @PostMapping("/{userName}/change")
+//    @PreAuthorize(value = "hasAuthority('User')")
+    public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String token, @PathVariable String userName, @RequestBody String password) {
         String username = jwtService.extractUsername(token.substring(7));
         if (userName.equals(username)) {
             try {
@@ -69,5 +69,7 @@ public class CustomerController {
         }
 
     }
+//    @PostMapping("/{userName}/forgot")
+//    public ResponseEntity<?> forgotPassword()
 
 }

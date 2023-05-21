@@ -45,8 +45,6 @@ public class Customer {
 
     @NotNull(message = "password cannot be null")
     @NotBlank(message = "password must be given")
-    @Pattern(regexp = ".*[a-zA-Z]+.*",message = "password must have atleast an alphabetic character")
-//    @Min(value = 7,message = "password must have minimum 7 characters")
     private String password;
 
     @NotNull(message = "confirmPassword cannot be null")

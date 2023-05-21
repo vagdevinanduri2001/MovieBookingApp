@@ -14,6 +14,7 @@ public interface MovieService {
     Movie updateTicketStatus(MovieId movieId);
     //getAll,search movie name,delete
     List<Movie> getAllMovies();
+    List<Movie> searchByMovieOrTheatreNames(String searchKeyword);
     List<Movie> searchMoviesByMovieName(String movieName);
     List<Movie> searchMoviesByTheatreName(String theatreName);
     public Movie searchByMovieId(String movieName,String theatreName);

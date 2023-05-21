@@ -5,11 +5,13 @@ import com.moviebooking.entity.MovieId;
 import com.moviebooking.exception.CommonException;
 import com.moviebooking.exception.MovieAlreadyExistsException;
 import com.moviebooking.exception.MovieNotFoundException;
+import com.moviebooking.repository.MovieRepository;
 import com.moviebooking.service.MovieServiceImpl;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +24,8 @@ import java.util.List;
 public class MovieController {
     @Autowired
     private MovieServiceImpl movieService;
+    @Autowired
+            private MovieRepository movieRepository;
 Logger logger = LoggerFactory.getLogger(MovieController.class);
     @PostMapping("/addMovie")
     @PreAuthorize("hasAuthority('Admin')")
@@ -74,13 +78,24 @@ Logger logger = LoggerFactory.getLogger(MovieController.class);
         List<Movie> movie = movieService.getAllMovies();
         if(movie.size() != 0){
             logger.info("----------------Total "+movie.size()+" Movies found------------------");
-            return new ResponseEntity<>(movie,HttpStatus.FOUND);
+            return new ResponseEntity<>(movie,HttpStatus.OK);
         }else{
             logger.info("----------------Movies not FOUND...------------------");
             return new ResponseEntity<>("Movies not FOUND...",HttpStatus.NOT_FOUND);
         }
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchTest(@RequestParam(defaultValue = "") String searchKeyword){
+        List<Movie> movie = movieService.searchByMovieOrTheatreNames(searchKeyword);
+        if(movie.size() != 0){
+            logger.info("----------------"+movie.size()+" Movies found with given movie name------------------");
+            return new ResponseEntity<>(movie,HttpStatus.OK);
+        }else{
+            logger.info("----------------Movies not FOUND...please check movie name------------------");
+            return new ResponseEntity<>("Movies not FOUND...please check movie name",HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping("/search/movie/{movieName}")
     public ResponseEntity<?> searchMovieByMovieName(@PathVariable String movieName){

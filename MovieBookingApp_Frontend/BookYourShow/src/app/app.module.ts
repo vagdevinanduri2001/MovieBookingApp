@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { CustomerComponent } from './customer/customer.component';
 import { LoginComponent } from './login/login.component';
@@ -17,16 +17,31 @@ import {MatSelectModule} from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiServiceService } from './services/api-service.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
+import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import { AddMovieComponent } from './add-movie/add-movie.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    RegisterComponent,
     AdminComponent,
     CustomerComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    ProfileComponent,
+    AddMovieComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +55,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [
     ApiServiceService

@@ -1,0 +1,11 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.heading{
+  text-decoration: none;
+  color: white;
+}
+.headerclass{
+  box-shadow: 0 3px 5px -1px rgba(205, 93, 93, 0.2), 0 6px 10px #00000024, 0 1px 18px #0000001f;
+}

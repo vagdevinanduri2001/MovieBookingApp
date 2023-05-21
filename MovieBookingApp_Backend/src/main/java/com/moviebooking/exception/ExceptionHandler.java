@@ -11,16 +11,16 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ExceptionHandler {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String,String> handleInvalidArgument(MethodArgumentNotValidException ex){
-        Map<String,String> errorMap=new HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach(error->{
-            errorMap.put(error.getField(),error.getDefaultMessage());
-        });
-
-        return errorMap;
-    }
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
+//    public Map<String,String> handleInvalidArgument(MethodArgumentNotValidException ex){
+//        Map<String,String> errorMap=new HashMap<>();
+//        ex.getBindingResult().getFieldErrors().forEach(error->{
+//            errorMap.put(error.getField(),error.getDefaultMessage());
+//        });
+//
+//        return errorMap;
+//    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @org.springframework.web.bind.annotation.ExceptionHandler(CommonException.class)

@@ -3,6 +3,7 @@ import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { ApiServiceService } from '../services/api-service.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +27,14 @@ login(loginForm:NgForm){
   this.apiService.login(loginForm.value).subscribe(
     (response:any)=>{
       this.auth.setToken(response.token);
+      this.auth.setCustomer(response.customer);
       this.auth.setRole(response.customer.role);
       this.auth.setUserName(response.customer.userName);
-
-      alert("Enjoy BookYourShow website")
-
+      Swal.fire(
+        'You have Successfully Logged in',
+        'Enjoy BookYourShow website...Thank you!',
+        'success'
+      )
       const role = response.customer.role;
       if(role==='Admin'){
         this.router.navigate(['/admin']);

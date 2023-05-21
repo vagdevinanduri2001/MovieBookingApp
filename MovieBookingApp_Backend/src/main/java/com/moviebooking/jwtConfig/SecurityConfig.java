@@ -37,9 +37,9 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
+        return http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/register","/signIn","/findUser/**","/v3/api-docs/**","/swagger-ui/**").permitAll()
+                .requestMatchers("/register","/signIn","/moviebooking/search/**","/moviebooking/all","/v3/api-docs/**","/swagger-ui/**").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/**")
                 .authenticated().and()

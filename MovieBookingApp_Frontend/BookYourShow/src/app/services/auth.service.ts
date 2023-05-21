@@ -7,6 +7,13 @@ export class AuthService {
 
   constructor() { }
 
+  public setCustomer(customer:any){
+    localStorage.setItem("customer",JSON.stringify(customer));
+  }
+  public getCustomer(){
+    return JSON.parse(localStorage.getItem("customer")!);
+  }
+
   public setRole(role:string){
     localStorage.setItem("role",role);
   }
