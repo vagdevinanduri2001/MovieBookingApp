@@ -13,6 +13,8 @@
     <mat-icon class="rounded">person</mat-icon></button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
     <button mat-menu-item routerLink="/profile">Profile</button>
+    <button mat-menu-item *ngIf="!CheckIfAdmin()" routerLink="/my-tickets">My Tickets</button>
+    <button mat-menu-item *ngIf="CheckIfAdmin()" routerLink="/admin">Admin Dashboard</button>
     <button mat-menu-item *ngIf="CheckIfAdmin()" routerLink="/addMovie">Add a Movie</button>
     <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>

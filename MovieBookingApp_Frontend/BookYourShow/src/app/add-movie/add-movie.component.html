@@ -1,1 +1,48 @@
-<p>add-movie works!</p>
+<div class="container mt-3">
+    <div class="card mx-auto mt-5 movieAddForm" style="padding: 20px;border: 1px solid black;">
+        
+        <h1 class="text-center"><b>Add a Movie Here<span class="material-icons"> movie_filter </span></b></h1>
+        <form #movieAddForm="ngForm" (ngSubmit)="addMovie()">
+            <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Movie Name</mat-label>
+                <input matInput type="text" [(ngModel)]="movie.movieId.movieName" name="movieName" id="movieName"
+                placeholder="Please enter the name Of the movie" required>
+                <mat-hint>MovieName</mat-hint>
+                <mat-error>Movie Name is required</mat-error>
+              </mat-form-field></p>
+
+              <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Theatre Name</mat-label>
+                <input matInput type="text" [(ngModel)]="movie.movieId.theatreName" name="theatreName" id="theatreName"
+                placeholder="Please enter the name Of the theatre" required>
+                <mat-hint>TheatreName</mat-hint>
+                <mat-error>Theatre Name is required</mat-error>
+              </mat-form-field></p>
+
+              <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Image URL</mat-label>
+                <input matInput type="url" [(ngModel)]="movie.imageUrl" name="imageUrl" id="imageUrl"
+                placeholder="Please provide image URL">
+                <mat-hint>Image URL</mat-hint>
+              </mat-form-field></p>
+
+              <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Cost of ticket</mat-label>
+                <input matInput type="" [(ngModel)]="movie.costOfTicket" name="costOfTicket" id="costOfTicket"
+                placeholder="Cost of Ticket for this movie without seat cost" required>
+                <mat-hint>Cost of ticket</mat-hint>
+              </mat-form-field></p>
+
+              <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Number of tickets Allotted</mat-label>
+                <input matInput type="" [(ngModel)]="movie.noOfTicketsAllotted" name="noOfTicketsAllotted" id="noOfTicketsAllotted"
+                placeholder="Number of tickets Allotted" required>
+                <mat-hint>Number of tickets Allotted</mat-hint>
+              </mat-form-field></p>
+
+              <div class="text-center mx-auto">
+                <button mat-raised-button type="submit" color="primary">Add Movie</button>
+              </div>
+        </form>
+    </div>
+</div>

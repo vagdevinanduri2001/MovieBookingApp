@@ -10,7 +10,7 @@
     <mat-grid-list cols="5"  rowHeight="2:4" gutterSize="15">
         <mat-grid-tile *ngFor="let m of allMovies">
           <div class="row">
-            <img class="movie-image rounded" src="assets/movie-bg final.png" alt="movie-bg">
+            <img class="movie-image rounded" src={{m.imageUrl}} alt="movie-bg">
             <div class="ml-2">
               <p><b>{{m.movieId.movieName}}</b></p>
             </div>

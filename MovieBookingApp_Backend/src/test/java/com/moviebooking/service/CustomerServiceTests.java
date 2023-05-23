@@ -77,19 +77,19 @@ public class CustomerServiceTests {
     @Test
     public void forgotPassword_Success(){
         when(customerRepository.findByUserName("user123")).thenReturn(Optional.of(customer));
-        String result = customerService.forgotPassword("user123","pass123");
+        String result = customerService.changePassword("user123","pass123");
         assertEquals("password updated successfully",result);
     }
     @Test
     public void forgotPassword_CommonException(){
         when(customerRepository.findByUserName("user123")).thenReturn(Optional.of(customer));
-        CommonException e = assertThrows(CommonException.class,()->{customerService.forgotPassword("user123","");});
+        CommonException e = assertThrows(CommonException.class,()->{customerService.changePassword("user123","");});
         verify(customerRepository, never()).save(any(Customer.class));
         assertEquals("password cannot be null",e.getMessage());
     }
     @Test
     public void forgotPassword_CustomerException(){
-        CustomerNotFoundException e = assertThrows(CustomerNotFoundException.class,()->{customerService.forgotPassword("user123","pass123");});
+        CustomerNotFoundException e = assertThrows(CustomerNotFoundException.class,()->{customerService.changePassword("user123","pass123");});
         verify(customerRepository, never()).save(any(Customer.class));
         assertEquals("Customer not found with username: user123",e.getMessage());
     }

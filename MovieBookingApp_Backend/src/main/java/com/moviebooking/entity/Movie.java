@@ -20,6 +20,7 @@ public class Movie {
     @Id
     private MovieId movieId;
     private int id;
+    private String imageUrl="https://img.freepik.com/premium-vector/abstract-home-cinema-background-illustration_118124-3052.jpg?w=360";
     @NotNull(message = "costOfTicket cannot be null")
     private double costOfTicket;
     @NotNull(message = "noOfTicketsAllotted cannot be null")

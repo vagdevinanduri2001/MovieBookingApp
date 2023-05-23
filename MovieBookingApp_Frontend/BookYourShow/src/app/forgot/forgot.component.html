@@ -1,0 +1,43 @@
+<p>forgot works!</p>
+
+<div class="container mt-3">
+    <div class="card mx-auto mt-5 forgotForm" style="padding: 20px;border: 1px solid black;">
+      
+        <h1 class="text-center"><b>Reset your password!</b></h1>
+        <form #forgotForm="ngForm" (ngSubmit)="forgotPassword(forgotForm)">
+            <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>UserName</mat-label>
+                <input matInput type="text" #nameField="ngModel" [(ngModel)]="userName" name="userName" id="userName"
+                placeholder="Enter your userName" required>
+                <mat-hint>UserName</mat-hint>
+                <mat-error>UserName is required</mat-error>
+              </mat-form-field></p>
+
+              <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="passwordComp.password" name="password" id="password"
+                 placeholder="Enter your password" minlength="7" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint>Password</mat-hint>
+                <mat-error>Password is required and have atleast 7 characters</mat-error>
+              </mat-form-field></p>
+
+              <p><mat-form-field appearance="outline" class="w-100">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="passwordComp.confirmPassword" name="confirmPassword" id="confirmPassword"
+                 placeholder="Enter your password again" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint>Password</mat-hint>
+                <mat-error>Confirm Password is required</mat-error>
+              </mat-form-field></p>
+            
+              <div class="text-center">
+                <button mat-raised-button type="submit" class="w-100 text-center" color="primary">Change Password</button>
+              </div>
+        </form>
+    </div>
+</div>

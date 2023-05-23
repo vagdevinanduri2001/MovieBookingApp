@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
-import { CustomerComponent } from './customer/customer.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -27,6 +26,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {MatTableModule} from '@angular/material/table';
+import { MyTicketsComponent } from './my-tickets/my-tickets.component';
+import { ForgotComponent } from './forgot/forgot.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -34,14 +37,15 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     AppComponent,
     RegisterComponent,
     AdminComponent,
-    CustomerComponent,
     LoginComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
     AddMovieComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    MyTicketsComponent,
+    ForgotComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     MatGridListModule,
     MatMenuModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [
     ApiServiceService

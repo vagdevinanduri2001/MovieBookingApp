@@ -8,7 +8,6 @@ import com.moviebooking.exception.CustomerNotFoundException;
 import com.moviebooking.exception.ExceptionHandler;
 import com.moviebooking.service.CustomerServiceImpl;
 import com.moviebooking.service.JwtService;
-import jakarta.servlet.ServletException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -87,7 +85,7 @@ public class CustomerControllerTest {
     public void forgotPassword_success() throws Exception {
         ResponseEntity<?> response = ResponseEntity.ok("password updated successfully");
         Mockito.when(jwtService.extractUsername(anyString())).thenReturn(customer.getUserName());
-        Mockito.when(customerService.forgotPassword(customer.getUserName(),"password")).thenReturn("password updated successfully");
+        Mockito.when(customerService.changePassword(customer.getUserName(),"password")).thenReturn("password updated successfully");
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/Kiran123/forgot")
                         .header("Authorization","Bearer token")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -110,7 +108,7 @@ public class CustomerControllerTest {
     public void forgotPassword_CustomerNotFoundException() throws Exception {
         ResponseEntity<?> response = ResponseEntity.ok("Customer not found with username: Kiran123" );
         Mockito.when(jwtService.extractUsername(anyString())).thenReturn(customer.getUserName());
-        Mockito.when(customerService.forgotPassword(customer.getUserName(),"password")).thenThrow(new CustomerNotFoundException("Customer not found with username: Kiran123"));
+        Mockito.when(customerService.changePassword(customer.getUserName(),"password")).thenThrow(new CustomerNotFoundException("Customer not found with username: Kiran123"));
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/Kiran123/forgot")
                 .header("Authorization","Bearer token")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -122,7 +120,7 @@ public class CustomerControllerTest {
     public void forgotPassword_CommonException() throws Exception {
         ResponseEntity<?> response = ResponseEntity.ok("password cannot be null");
         Mockito.when(jwtService.extractUsername(anyString())).thenReturn(customer.getUserName());
-        Mockito.when(customerService.forgotPassword(customer.getUserName(),"password")).thenThrow(new CommonException("password cannot be null"));
+        Mockito.when(customerService.changePassword(customer.getUserName(),"password")).thenThrow(new CommonException("password cannot be null"));
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/Kiran123/forgot")
                 .header("Authorization","Bearer token")
                 .contentType(MediaType.APPLICATION_JSON)

@@ -38,8 +38,8 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
     }
-
-    public String forgotPassword(String username, String password) {
+@Override
+    public String changePassword(String username, String password) {
 
         Optional<Customer> customer = customerRepository.findByUserName(username);
 
@@ -58,6 +58,27 @@ public class CustomerServiceImpl implements CustomerService {
             throw new CustomerNotFoundException("Customer not found with username: " + username);
         }
 
+    }
+
+    @Override
+    public String forgotPassword(String userName, String password, String confirmPassword){
+        Optional<Customer> customer = customerRepository.findByUserName(userName);
+        if(customer.isPresent()){
+            if(password==null || password=="" || confirmPassword==null || confirmPassword==""){
+                throw new CommonException("Passwords cannot be null");
+            } else if (!password.equals(confirmPassword)) {
+                throw new CommonException("Both passwords have to be same");
+            }else{
+                customer.get().setPassword(passwordEncoder.encode(password));
+
+                customer.get().setConfirmPassword(passwordEncoder.encode(confirmPassword));
+
+                customerRepository.save(customer.get());
+                return "password updated successfully";
+            }
+        }else {
+            throw new CustomerNotFoundException("Customer not found with username: " + userName);
+        }
     }
 
 }

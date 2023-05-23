@@ -73,7 +73,7 @@ public class MovieServiceImpl implements MovieService{
             else{
                 movie.get().setTicketStatus("Book ASAP");
             }
-            kafkaTemplate.send("my-topic",movie.get());
+//            kafkaTemplate.send("my-topic",movie.get());
             return movieRepository.save(movie.get());
         }else{
             throw new MovieNotFoundException("Movie not found");

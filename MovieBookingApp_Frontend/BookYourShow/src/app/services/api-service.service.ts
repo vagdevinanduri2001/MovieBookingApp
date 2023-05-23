@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Movie } from '../model/movie';
+import movieId from '../model/movieId';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +34,36 @@ export class ApiServiceService {
       {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
       "responseType": "text"
       }
-    )
+    );
   }
+  public forgot(userName:string,passwordComp:any){
+    return this.http.post(this.PATH_OF_API+"/"+userName+"/forgot",passwordComp,
+    { headers: this.requestHeader, "responseType": "text" });
+  }
+
+  public addMovie(movie:any) {
+    return this.http.post(this.PATH_OF_API+"/moviebooking/addMovie",movie,
+    {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
+      "responseType": "text"
+      }
+    );
+  }
+
+  public deleteMovie(movieName:string,theatreName:string){
+    return this.http.delete(this.PATH_OF_API+"/moviebooking/delete/"+movieName+"/"+theatreName,
+    {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
+      "responseType": "text"
+      }
+    );
+  }
+
+  public updateTicketStatus(id:movieId){
+    return this.http.put(this.PATH_OF_API+"/moviebooking/update",id,
+    {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
+      "responseType": "text"
+      }
+    );
+  }
+
 
 }

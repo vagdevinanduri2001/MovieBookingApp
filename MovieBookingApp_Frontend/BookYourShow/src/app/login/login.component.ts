@@ -4,6 +4,7 @@ import { ApiServiceService } from '../services/api-service.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
   constructor(private fb:FormBuilder,
     private apiService:ApiServiceService,
     private auth:AuthService,
-    private router:Router
+    private router:Router,
+    private snack : MatSnackBar
     ){}
 
   loginData = this.fb.group(
@@ -26,20 +28,16 @@ export class LoginComponent {
 login(loginForm:NgForm){
   this.apiService.login(loginForm.value).subscribe(
     (response:any)=>{
+      this.snack.open('You have successfully logged in!','Ok');
       this.auth.setToken(response.token);
       this.auth.setCustomer(response.customer);
       this.auth.setRole(response.customer.role);
       this.auth.setUserName(response.customer.userName);
-      Swal.fire(
-        'You have Successfully Logged in',
-        'Enjoy BookYourShow website...Thank you!',
-        'success'
-      )
       const role = response.customer.role;
       if(role==='Admin'){
         this.router.navigate(['/admin']);
       }else{
-        this.router.navigate(['/customer']);
+        this.router.navigate(['/']);
       }
     },
     (error)=>{
