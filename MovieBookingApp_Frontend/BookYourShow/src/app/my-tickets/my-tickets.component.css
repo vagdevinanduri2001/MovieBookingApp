@@ -1,0 +1,26 @@
+.ml-2{
+    margin-left: auto;
+    text-align: center;
+}
+.mat-grid-tile{
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+.example-card {
+    width:100%;
+    /* max-width: 400px; */
+    margin-bottom: 8px;
+  }
+  .seats{
+    display: inline;
+    font-size: 20px;
+  }
+  .movie-image{
+    max-width: 90%;
+    max-height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.theatre{
+    font-size: larger;
+}

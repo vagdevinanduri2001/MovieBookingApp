@@ -29,38 +29,54 @@ export class ApiServiceService {
     return this.http.get(this.PATH_OF_API + "/moviebooking/search?searchKeyword=" + searchKey,
       { headers: this.requestHeader });
   }
+  public searchByMovieId(movieName:string,theatreName:string) {
+    return this.http.get(this.PATH_OF_API + "/moviebooking/search/"+movieName+"/"+theatreName,
+      { headers: this.requestHeader });
+  }
   public forgotPassword(userName: string, password: string) {
-    return this.http.post(this.PATH_OF_API +"/"+ userName + "/change", password,
-      {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
-      "responseType": "text"
+    return this.http.post(this.PATH_OF_API + "/" + userName + "/change", password,
+      {
+        "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        "responseType": "text"
       }
     );
   }
-  public forgot(userName:string,passwordComp:any){
-    return this.http.post(this.PATH_OF_API+"/"+userName+"/forgot",passwordComp,
-    { headers: this.requestHeader, "responseType": "text" });
+  public forgot(userName: string, passwordComp: any) {
+    return this.http.post(this.PATH_OF_API + "/" + userName + "/forgot", passwordComp,
+      { headers: this.requestHeader, "responseType": "text" });
   }
 
-  public addMovie(movie:any) {
-    return this.http.post(this.PATH_OF_API+"/moviebooking/addMovie",movie,
-    {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
-      "responseType": "text"
-      }
-    );
-  }
-
-  public deleteMovie(movieName:string,theatreName:string){
-    return this.http.delete(this.PATH_OF_API+"/moviebooking/delete/"+movieName+"/"+theatreName,
-    {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
-      "responseType": "text"
+  public addMovie(movie: any) {
+    return this.http.post(this.PATH_OF_API + "/moviebooking/addMovie", movie,
+      {
+        "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        "responseType": "text"
       }
     );
   }
 
-  public updateTicketStatus(id:movieId){
-    return this.http.put(this.PATH_OF_API+"/moviebooking/update",id,
-    {"headers": {"Authorization": `Bearer ${localStorage.getItem("token")}`}, 
-      "responseType": "text"
+  public deleteMovie(movieName: string, theatreName: string) {
+    return this.http.delete(this.PATH_OF_API + "/moviebooking/delete/" + movieName + "/" + theatreName,
+      {
+        "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        "responseType": "text"
+      }
+    );
+  }
+
+  public updateTicketStatus(id: movieId) {
+    return this.http.put(this.PATH_OF_API + "/moviebooking/update", id,
+      {
+        "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        "responseType": "text"
+      }
+    );
+  }
+
+  public viewTickets() {
+    return this.http.get(this.PATH_OF_API + "/moviebooking/viewTickets",
+      {
+        "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` }
       }
     );
   }

@@ -3,6 +3,7 @@ import { ApiServiceService } from '../services/api-service.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import movieId from '../model/movieId';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +14,8 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private api: ApiServiceService,
-    private router: Router
+    private router: Router,
+    private snack : MatSnackBar
   ) { }
   ngOnInit(): void {
     this.getAllMovies();
@@ -39,6 +41,7 @@ export class AdminComponent implements OnInit {
     this.api.deleteMovie(movieName, theatreName).subscribe(
       (response) => {
         this.getAllMovies();
+        this.snack.open('Movie Deleted!','Ok');
       },
       (error) => {
         Swal.fire({
@@ -52,6 +55,7 @@ export class AdminComponent implements OnInit {
   public updateTicketStatus(id: movieId) {
     this.api.updateTicketStatus(id).subscribe(
       (response) => {
+        this.snack.open('Updated ticket Status','Ok');
         console.log(response);
       },
       (error) => {

@@ -1,1 +1,47 @@
-<p>my-tickets works!</p>
+<div class="container mt-3">
+<mat-grid-list cols="4" rowHeight="2:4" gutterSize="15">
+    <mat-grid-tile *ngFor="let t of myTickets">
+      <div class="row">
+
+        <img class="movie-image rounded" src={{t.seats[0].movie.imageUrl}} alt="movie-bg">
+        <div class="ml-2 mt-2">
+          <p><b>{{t.movieName}}</b></p>
+        </div>
+        <div class="ml-2 theatre">
+          <p>{{t.theatreName}}</p>
+        </div>
+        <div class="ml-2">
+            <p>No.of tickets : <b>{{t.noOfTickets}}</b></p>
+          </div>
+          <div class="ml-2">
+            Seats: <b><pre class="seats" *ngFor="let s of t.seats"><mat-icon>event_seat</mat-icon>{{s.seatNumber}} </pre></b>
+          </div>
+        <div class="ml-2 mt-2">
+          <p>Total ticket Cost: <b>Rs. {{t.totalCost}}</b></p>
+        </div>
+
+        <!-- <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>{{t.movieName}} Movie</mat-card-title>
+                <mat-card-subtitle>{{t.theatreName}} Theatre</mat-card-subtitle>
+                <img mat-card-md-image src={{t.seats[0].movie.imageUrl}} >
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="ml-2 mt-3">
+                    <p>No.of tickets : <b>{{t.noOfTickets}}</b></p>
+                  </div>
+                  <div class="ml-2">
+                    <p>Cost: <b>Rs. {{t.totalCost}}</b></p>
+                  </div>
+                  <div class="ml-2">
+                  Seats: <b><pre class="seats" *ngFor="let s of t.seats"><mat-icon>event_seat</mat-icon>{{s.seatNumber}} </pre></b>
+                </div>
+            </mat-card-content>
+          </mat-card> -->
+      </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+</div>

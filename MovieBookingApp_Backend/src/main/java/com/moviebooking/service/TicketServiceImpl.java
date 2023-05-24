@@ -40,6 +40,7 @@ public class TicketServiceImpl implements TicketService {
                     Seat seat = seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(), movie.get().getId());
                     seats.add(seat);
                 }
+                ticket.setSeats(seats);
                 double cost = 0;
                 for (Seat s : seats) {
                     if (s.getSeatStatus().equals(SeatStatus.Booked)) {
@@ -65,6 +66,11 @@ public class TicketServiceImpl implements TicketService {
             throw new MovieNotFoundException("Movie not found");
         }
 
+    }
+
+    @Override
+    public List<Ticket> viewAllTickets(String userName){
+        return ticketRepository.findByCustomerUserName(userName);
     }
 
 }

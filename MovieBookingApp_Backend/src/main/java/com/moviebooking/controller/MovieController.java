@@ -124,7 +124,7 @@ Logger logger = LoggerFactory.getLogger(MovieController.class);
         Movie movie = movieService.searchByMovieId(movieName,theatreName);
         if(movie!= null){
             logger.info("----------------Movie found with given movie name and theatre name------------------");
-            return new ResponseEntity<>(movie,HttpStatus.FOUND);
+            return new ResponseEntity<>(movie,HttpStatus.OK);
         }else{
             logger.info("----------------Movies not FOUND...please check movie or theatre name------------------");
             return new ResponseEntity<>("Movies not FOUND...please check movie or theatre name",HttpStatus.NOT_FOUND);

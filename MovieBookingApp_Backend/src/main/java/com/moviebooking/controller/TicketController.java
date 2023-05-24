@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -44,6 +45,24 @@ public class TicketController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
         }catch (CommonException e){
             logger.info("----------------"+e.getMessage()+"------------------");
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+    @GetMapping("/viewTickets")
+    public ResponseEntity<?> viewTickets(@RequestHeader("Authorization") String token){
+        try {
+            String userName = jwtService.extractUsername(token.substring(7));
+
+            List<Ticket> tickets = ticketService.viewAllTickets(userName);
+            if(tickets.size() != 0){
+                logger.info("----------------Total "+tickets.size()+" Movies found------------------");
+                return new ResponseEntity<>(tickets,HttpStatus.OK);
+            }else{
+                logger.info("----------------Tickets not FOUND...------------------");
+                return new ResponseEntity<>("Looks like you haven't booked any tickets!",HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
         }
     }
