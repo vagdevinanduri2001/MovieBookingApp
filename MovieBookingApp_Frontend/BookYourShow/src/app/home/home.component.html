@@ -1,13 +1,13 @@
 <div class="container mt-3">
-      <mat-form-field appearance="outline" class="searchbar w-50">
-        <mat-label>Search for Movies</mat-label>
-        <input matInput type="text" name="search" id="search" 
-        #searchKey (keyup)="searchByKeyword(searchKey.value)"
-        placeholder="Search for Movies"><mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="searchbar w-50">
+      <mat-label>Search for Movies</mat-label>
+      <input matInput type="text" name="search" id="search" 
+      #searchKey (keyup)="searchByKeyword(searchKey.value)"
+      placeholder="Search for Movies"><mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+<!-- //(window:resize)="onResize($event)" -->
+  <mat-grid-list [cols]="getGridListCols()" rowHeight="2:4" gutterSize="15" >
 
-
-    <mat-grid-list cols="5" rowHeight="2:4" gutterSize="15">
         <mat-grid-tile *ngFor="let m of allMovies">
           <div class="row">
             <img class="movie-image rounded" src={{m.imageUrl}} alt="movie-bg">
@@ -26,6 +26,6 @@
           </div>
           </div>
         </mat-grid-tile>
-    </mat-grid-list>
+  </mat-grid-list>
 
 </div>

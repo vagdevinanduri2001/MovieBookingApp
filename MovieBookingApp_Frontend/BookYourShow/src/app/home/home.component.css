@@ -1,45 +1,29 @@
+.mat-grid-tile:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Customize the box shadow as desired */
+  transition: box-shadow 0.3s; /* Smooth transition when applying the box shadow */
+  transform: scale(1.1);
+}
 .mat-grid-tile{
     border-radius: 5px;
     border: 1px solid lightgrey;
 }
 .searchbar{
+  display: flex;
     margin: 0 auto;
     display: block;
 }
 .movie-image{
+  display: flex;
     max-width: 90%;
     max-height: 90%;
     margin-left: auto;
     margin-right: auto;
-}
-.mat-grid-tile-footer{
-    background-color: aliceblue;
 }
 .ml-2{
     margin-left: auto;
     text-align: center;
 }
   .mat-grid-list {
+    flex-wrap: wrap;
     width: 100%; 
-  }
-
-  @media (max-width: 600px) {
-    .mat-grid-list {
-      grid-template-columns: repeat(1, 1fr); /* Set 1 column for small screens */
-    }
-  }
-  
-  /* Adjust grid list layout for medium screens */
-  @media (min-width: 601px) and (max-width: 1024px) {
-    .mat-grid-list {
-      grid-template-columns: repeat(3, 1fr); /* Set 2 columns for medium screens */
-    }
-  }
-  
-  /* Adjust grid list layout for large screens */
-  @media (min-width: 1025px) {
-    .mat-grid-list {
-
-      grid-template-columns: repeat(5, 1fr); /* Set 3 columns for large screens */
-    }
   }

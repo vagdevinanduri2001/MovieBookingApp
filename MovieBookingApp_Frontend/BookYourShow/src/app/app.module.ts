@@ -30,6 +30,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     MatDividerModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    LayoutModule
   ],
   providers: [
     ApiServiceService
