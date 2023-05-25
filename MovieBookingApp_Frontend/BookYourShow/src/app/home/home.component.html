@@ -6,7 +6,7 @@
       placeholder="Search for Movies"><mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 <!-- //(window:resize)="onResize($event)" -->
-  <mat-grid-list [cols]="getGridListCols()" rowHeight="2:4" gutterSize="15" >
+  <mat-grid-list [cols]="getGridListCols()" rowHeight="2:4" gutterSize="15" (window:resize)="onResize($event)">
 
         <mat-grid-tile *ngFor="let m of allMovies">
           <div class="row">

@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       this.isTablet = result.matches && result.breakpoints[Breakpoints.Tablet];
     });
   }
-  // onResize(event: any) {
+   onResize(event: any) {
   //   if (window.innerWidth <= 641) {
   //     this.breakpoint = 1;
   //   } else if (window.innerWidth <= 1007) {
@@ -42,7 +42,12 @@ export class HomeComponent implements OnInit {
   //   } else {
   //     this.breakpoint = 5;
   //   }
-  // }
+  this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet]).subscribe(result => {
+    this.isHandset = result.matches && result.breakpoints[Breakpoints.Handset];
+    this.isTablet = result.matches && result.breakpoints[Breakpoints.Tablet];
+  });
+  this.getGridListCols();
+   }
 
   getGridListCols() {
     return this.isHandset ? 1 :
