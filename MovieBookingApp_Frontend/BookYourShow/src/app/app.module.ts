@@ -30,7 +30,8 @@ import {MatTableModule} from '@angular/material/table';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {LayoutModule } from '@angular/cdk/layout';
+import {BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
+import { BookTicketComponent } from './book-ticket/book-ticket.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {LayoutModule } from '@angular/cdk/layout';
     AddMovieComponent,
     ForgotPasswordComponent,
     MyTicketsComponent,
-    ForgotComponent
+    ForgotComponent,
+    BookTicketComponent
   ],
   imports: [
     BrowserModule,

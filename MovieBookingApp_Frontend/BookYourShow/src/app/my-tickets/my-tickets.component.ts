@@ -12,6 +12,7 @@ export class MyTicketsComponent implements OnInit{
 
   myTickets:any =[];
   seats:any = [];
+  breakpoint!: number;
 
   constructor(
     private api : ApiServiceService
@@ -19,8 +20,23 @@ export class MyTicketsComponent implements OnInit{
 
   ngOnInit(): void {
     this.viewTickets();
-    
+    if (window.innerWidth <= 768) {
+      this.breakpoint = 1;
+    } else if (window.innerWidth <= 1200) {
+      this.breakpoint = 3;
+    } else {
+      this.breakpoint = 5;
+    }
   }
+  onResize(event: any) {
+    if (window.innerWidth <= 768) {
+      this.breakpoint = 1;
+    } else if (window.innerWidth <= 1200) {
+      this.breakpoint = 3;
+    } else {
+      this.breakpoint = 5;
+    }
+   }
 
   public viewTickets(){
     this.api.viewTickets().subscribe(

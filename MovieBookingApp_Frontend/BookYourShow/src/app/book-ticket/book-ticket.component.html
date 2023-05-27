@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card mt-4 text-center mx-auto">
+        <div class="w-100">
+         <p><mat-icon>movie</mat-icon>Movie Name:<b>{{movieName}}</b></p>
+        <p><mat-icon>theaters</mat-icon>Theatre Name: <b>{{theatreName}}</b></p>
+        <p><mat-icon>money</mat-icon>Cost of Movie: <b>₹{{movieCost}}</b></p>
+    </div>
+
+        <p><mat-form-field appearance="outline" class="w-50 mt-3">
+            <mat-label>Number of seats</mat-label>
+            <input matInput type="" [(ngModel)]="noOfTickets" name="noOfTickets" id="noOfTickets"
+            placeholder="Please enter number of seats" min="1" required>
+            <mat-hint>Number of seats</mat-hint>
+          </mat-form-field></p>
+
+          <div class=" costs mt-2">
+            <small><b>[</b>Balcony Seat(1-40) : <b>+ ₹50 ; </b></small>
+            <small>Orchestra Seat(From 40) : <b> + ₹100 ]</b></small>
+          </div>
+
+          <ul class="showcase w-50 mx-auto">
+            <li>
+              <div class="seat"></div>
+              <small>Available</small>
+            </li>
+            <li>
+              <div class="seat selected"></div>
+              <small>Selected</small>
+            </li>
+            <li>
+              <div class="seat sold"></div>
+              <small>Sold</small>
+            </li>
+          </ul>
+
+          <div class="mt-5 container seat-block w-75">
+            <div class="screen mx-auto mt-4"></div>
+
+            <div *ngFor="let s of totalSeats" class="seat-row mt-3">
+                <div class="seat"></div>
+            </div>
+
+            </div>
+
+          </div>
+        
+    </div>

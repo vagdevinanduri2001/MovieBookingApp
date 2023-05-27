@@ -50,9 +50,9 @@ public class Seat {
 
     public void setCost() {
         if(this.seatType.equalsIgnoreCase("Orchestra")){
-            this.cost=200;
-        } else if (this.seatType.equalsIgnoreCase("Balcony")) {
             this.cost=100;
+        } else if (this.seatType.equalsIgnoreCase("Balcony")) {
+            this.cost=50;
         }
     }
 }

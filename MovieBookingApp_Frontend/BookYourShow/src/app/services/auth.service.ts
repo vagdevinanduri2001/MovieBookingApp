@@ -7,6 +7,13 @@ export class AuthService {
 
   constructor() { }
 
+  public setMovie(movie:any){
+    localStorage.setItem("movie",JSON.stringify(movie));
+  }
+  public getMovie(){
+    return JSON.parse(localStorage.getItem("movie")!);
+  }
+
   public setCustomer(customer:any){
     localStorage.setItem("customer",JSON.stringify(customer));
   }
@@ -38,4 +45,11 @@ export class AuthService {
   public isLoggedIn(){
     return this.getRole()&&this.getToken();
   }
+
+  // public isLoggedIn() {
+  //   let tokenStr = localStorage.getItem('token');
+  //   if (tokenStr == undefined || tokenStr == '' || tokenStr == null)
+  //     return false;
+  //   else return true;
+  // }
 }

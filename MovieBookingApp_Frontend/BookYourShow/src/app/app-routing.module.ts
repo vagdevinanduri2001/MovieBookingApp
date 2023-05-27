@@ -9,6 +9,7 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { ForgotComponent } from './forgot/forgot.component';
+import { BookTicketComponent } from './book-ticket/book-ticket.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:'addMovie',component:AddMovieComponent},
   {path:'forgot',component:ForgotPasswordComponent},
   {path:'my-tickets',component:MyTicketsComponent},
-  {path:'forgot-password',component:ForgotComponent}
+  {path:'forgot-password',component:ForgotComponent},
+  {path:'book-ticket',component:BookTicketComponent}
 ];
 
 @NgModule({
