@@ -41,12 +41,13 @@ export class MyTicketsComponent implements OnInit{
   public viewTickets(){
     this.api.viewTickets().subscribe(
       (response:any)=>{
-        console.log(response);
+        // console.log(response);
         this.myTickets = response;
-        this.myTickets.forEach((ticket: any) => {
-          this.seats = ticket.seats;
-          console.log(this.seats);
-        });
+        console.log(this.myTickets);
+        // this.myTickets.forEach((ticket: any) => {
+        //   this.seats = ticket.seats;
+        //   console.log(this.seats[0].movie.imageUrl);
+        // });
         },
       (error:any)=>{
         console.log(error);

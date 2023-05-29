@@ -10,4 +10,6 @@ public interface TicketService {
     Ticket addTicket(Customer customer, Ticket ticket);
 
     List<Ticket> viewAllTickets(String userName);
+
+    Ticket getTicketById(int ticketId);
 }

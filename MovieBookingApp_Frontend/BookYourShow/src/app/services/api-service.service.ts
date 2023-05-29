@@ -84,13 +84,22 @@ export class ApiServiceService {
   public bookTicket(ticket:any) {
     return this.http.post(this.PATH_OF_API +"/moviebooking/add",ticket,
     {
-      "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+      "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+      "responseType": "text"
     }
     );
   }
 
   public getSeatsByMovie(movieName: string, theatreName: string){
     return this.http.get(this.PATH_OF_API+"/getAllSeats/"+movieName+"/"+theatreName,
+    {
+      "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    }
+    );
+  }
+
+  public getTicketById(ticketId:number){
+    return this.http.get(this.PATH_OF_API+"/moviebooking/ticketById/"+ticketId,
     {
       "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     }

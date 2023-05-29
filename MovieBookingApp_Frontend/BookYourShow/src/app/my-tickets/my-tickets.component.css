@@ -11,9 +11,10 @@
     /* max-width: 400px; */
     margin-bottom: 8px;
   }
-  .seats{
-    display: inline;
-    font-size: 20px;
+  .seats {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
   }
   .movie-image{
     max-width: 90%;
@@ -23,4 +24,11 @@
 }
 .theatre{
     font-size: larger;
+}
+.row{
+  display: flex;
+}
+.seat-icon{
+  transform: scale(0.5);
+  padding-top: 3px;
 }

@@ -37,9 +37,9 @@ public class TicketController {
         try {
             String userName = jwtService.extractUsername(token.substring(7));
             Optional<Customer> customer = customerRepository.findByUserName(userName);
-            ticketService.addTicket(customer.get(),ticket);
+            Ticket ticket1 = ticketService.addTicket(customer.get(),ticket);
             logger.info("----------------Ticket booked!------------------");
-            return new ResponseEntity<>("Ticket booked!", HttpStatus.OK);
+            return new ResponseEntity<>("Ticket booked with ticketId: "+ticket1.getTicketId()+" !", HttpStatus.OK);
         }catch (MovieNotFoundException e){
             logger.info("----------------"+e.getMessage()+"------------------");
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
@@ -65,6 +65,11 @@ public class TicketController {
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
         }
+    }
+
+    @GetMapping("/ticketById/{ticketId}")
+    public Ticket getTicketById(@RequestHeader("Authorization") String token,@PathVariable int ticketId){
+        return ticketService.getTicketById(ticketId);
     }
 
 }

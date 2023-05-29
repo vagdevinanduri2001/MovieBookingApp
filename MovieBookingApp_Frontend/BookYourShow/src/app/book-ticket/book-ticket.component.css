@@ -6,6 +6,18 @@ mat-icon {
     padding-top: 4px;
 }
 
+.details{
+    width: fit-content;
+    height:fit-content;
+    float: left;
+    margin-left: 5%;
+    border: .5px solid rgb(63,81,181);
+}
+
+.card{
+    display: flex;
+}
+
 .showcase {
     /* background: rgba(0, 0, 0, 0.1); */
     padding: 5px 10px;
@@ -17,6 +29,8 @@ mat-icon {
 }
 
 .showcase li {
+    /* background-color: #242333; */
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,13 +47,22 @@ mat-icon {
 }
 
 .seat {
-    background-color: #444451;
-    height: 26px;
-    width: 32px;
+    background-color: #fff;
+    height: 20px;
+    width: 20px;
     margin: 3px;
     font-size: 50px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    /* border-top-left-radius: 10px;
+    border-top-right-radius: 10px; */
+    border : 1px solid green;
+    cursor: pointer;
+}
+
+.seat:hover{
+    background-color: green;
+    .seatNumber{
+        color: white;
+    }
 }
 
 .seat.selected {
@@ -47,36 +70,67 @@ mat-icon {
 }
 
 .seat.sold {
+    border: none;
     background-color: #d62d2d;
+    cursor: default;
+    .seatNumber{
+        color: white;
+    }
 }
 
 .seat-block {
-    /* display: flex; */
+    display: flex;
+    background-color: #FAFAFA;
     width: auto;
-    background-color: lightgray;
     perspective: 1000px;
     margin-bottom: 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.seatNumber{
+    font-size: xx-small;
+    color: black;
 }
 
 .screen {
-    background-color: #fff;
+    background-color: #DAE7FC;
+    border: 1px solid #DAE7FC;
     height: 100px;
-    width: 90%;
+    width: 50%;
     margin: 15px 0;
     transform: rotateX(-48deg);
-    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 3px 10px #DAE7FC;
 }
 
-.seat-row{
+
+.seatMap {
+    background-color: #FAFAFA;
+}
+
+.screen-text{
+    color: black;
+    font-size: 12px;
+}
+
+.seat-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    /* flex-wrap: wrap; */
 }
 
-.seat:nth-of-type(3) {
-    margin-right: 18px;
-  }
-  
-  .seat:nth-last-of-type(3) {
-    margin-left: 18px;
-  }
+.seat-row:nth-of-type(4) {
+    margin-bottom: 40px;
+}
+
+.cols {
+    display: flex;
+}
+
+.cols:nth-of-type(4) {
+    margin-right: 25px;
+}
+
+.cols:nth-last-of-type(4) {
+    margin-left: 25px;
+}

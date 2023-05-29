@@ -31,6 +31,8 @@ public class TicketServiceImpl implements TicketService {
         MovieId movieId = new MovieId(ticket.getMovieName(), ticket.getTheatreName());
         Optional<Movie> movie = movieRepository.findById(movieId);
         if (movie.isPresent()) {
+            int seatSize = ticket.getNoOfTickets();
+            if(seatSize!=0){
             int availableTickets = movie.get().getNoOfTicketsAllotted() - movie.get().getNoOfTicketsSold();
         if(ticket.getNoOfTickets()==ticket.getSeats().size()) {
             if (availableTickets > ticket.getNoOfTickets()) {
@@ -60,9 +62,13 @@ public class TicketServiceImpl implements TicketService {
                 throw new CommonException("Tickets not available");
             }
         }else{
-            throw new CommonException("No.of seats selected should be equal size of seats list");
+            throw new CommonException("No.of seats entered should be equal to No.of seats selected");
         }
-        } else {
+        }else{
+            throw new CommonException("Please select any seat to book ticket");
+        }
+        }
+            else {
             throw new MovieNotFoundException("Movie not found");
         }
 
@@ -72,7 +78,9 @@ public class TicketServiceImpl implements TicketService {
     public List<Ticket> viewAllTickets(String userName){
         return ticketRepository.findByCustomerUserName(userName);
     }
-
-
+@Override
+    public Ticket getTicketById(int ticketId){
+        return ticketRepository.findById(ticketId).get();
+    }
 
 }

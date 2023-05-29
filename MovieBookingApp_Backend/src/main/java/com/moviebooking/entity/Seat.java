@@ -36,7 +36,7 @@ public class Seat {
     }
 
     public void setSeatType() {
-        if(this.seatNumber>0 && this.seatNumber<40){
+        if(this.seatNumber>0 && this.seatNumber<60){
             this.seatType="Balcony";
         }else{
             this.seatType="Orchestra";
