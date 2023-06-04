@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 import { Movie } from '../model/movie';
 import movieId from '../model/movieId';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-my-tickets',
@@ -37,7 +38,7 @@ export class MyTicketsComponent implements OnInit{
       this.breakpoint = 5;
     }
    }
-
+errorMessage='';
   public viewTickets(){
     this.api.viewTickets().subscribe(
       (response:any)=>{
@@ -50,7 +51,7 @@ export class MyTicketsComponent implements OnInit{
         // });
         },
       (error:any)=>{
-        console.log(error);
+        this.errorMessage = error.error;
       }
     );
   }

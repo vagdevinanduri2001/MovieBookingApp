@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Movie } from '../model/movie';
 import { ApiServiceService } from '../services/api-service.service';
 import movieId from '../model/movieId';
-import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';

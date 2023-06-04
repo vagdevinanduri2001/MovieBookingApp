@@ -1,4 +1,5 @@
 <div class="container mt-3">
+  <p>{{errorMessage}}</p>
   <mat-grid-list [cols]="breakpoint" rowHeight="2:4" gutterSize="15" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let t of myTickets">
       <div class="row">

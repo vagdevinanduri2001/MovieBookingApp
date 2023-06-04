@@ -1,4 +1,4 @@
-export default class movieId {
+export default class MovieId {
     movieName: string;
     theatreName: string;
 

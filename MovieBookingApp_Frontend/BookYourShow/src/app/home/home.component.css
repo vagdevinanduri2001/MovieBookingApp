@@ -1,7 +1,7 @@
 .mat-grid-tile:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Customize the box shadow as desired */
   transition: box-shadow 0.3s; /* Smooth transition when applying the box shadow */
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .mat-grid-tile{
     border-radius: 5px;

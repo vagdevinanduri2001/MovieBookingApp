@@ -1,6 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddMovieComponent } from './add-movie.component';
+import { ApiServiceService } from '../services/api-service.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 describe('AddMovieComponent', () => {
   let component: AddMovieComponent;
@@ -8,7 +16,16 @@ describe('AddMovieComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddMovieComponent]
+      imports:[HttpClientTestingModule,
+        MatSnackBarModule,
+        RouterTestingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule
+      ],
+      declarations: [AddMovieComponent],
+      providers: [ApiServiceService]
     });
     fixture = TestBed.createComponent(AddMovieComponent);
     component = fixture.componentInstance;

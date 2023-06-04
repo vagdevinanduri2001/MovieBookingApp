@@ -28,7 +28,7 @@ export class LoginComponent {
 login(loginForm:NgForm){
   this.apiService.login(loginForm.value).subscribe(
     (response:any)=>{
-      this.snack.open('You have successfully logged in!','Ok');
+      this.snack.open('You have successfully logged in!','Ok',{duration:3000});
       this.auth.setToken(response.token);
       this.auth.setCustomer(response.customer);
       this.auth.setRole(response.customer.role);

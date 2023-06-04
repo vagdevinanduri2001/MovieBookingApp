@@ -33,6 +33,7 @@ export class ForgotComponent {
           icon:'success'
         });
         console.log(response);
+        this.router.navigate(['/login']);
       },
       (error) => {
         Swal.fire({

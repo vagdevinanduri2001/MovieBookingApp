@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 import { AuthService } from '../services/auth.service';
-import { NgModel } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -20,7 +19,7 @@ export class BookTicketComponent implements OnInit {
   cols = 15;
   seatArray: any[][] = []
   selectedSeats:any[] = [];
-
+ticket:any = {}
 
   ngOnInit(): void {
     this.movieName = this.auth.getMovie().movieId.movieName;
@@ -33,14 +32,16 @@ export class BookTicketComponent implements OnInit {
     private api: ApiServiceService,
     private auth: AuthService,
     private router : Router
-  ) { }
-
-  ticket = {
-    "movieName": this.auth.getMovie().movieId.movieName,
-    "theatreName": this.auth.getMovie().movieId.theatreName,
-    "seats":this.selectedSeats,
-    "noOfTickets":0    
+  ) { 
+    this.ticket = {
+      "movieName": this.auth.getMovie().movieId.movieName,
+      "theatreName": this.auth.getMovie().movieId.theatreName,
+      "seats":this.selectedSeats,
+      "noOfTickets":0    
+    }
   }
+
+  
 
   public getAllSeatsByMovie() {
     this.api.getSeatsByMovie(this.movieName, this.theatreName).subscribe(

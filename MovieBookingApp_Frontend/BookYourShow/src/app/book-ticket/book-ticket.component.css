@@ -46,17 +46,27 @@ mat-icon {
     transform: scale(1);
 }
 
-.seat {
+/* .seat {
     background-color: #fff;
     height: 20px;
     width: 20px;
     margin: 3px;
     font-size: 50px;
-    /* border-top-left-radius: 10px;
-    border-top-right-radius: 10px; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border : 1px solid green;
-    cursor: pointer;
-}
+    cursor: pointer; */
+    .seat {
+        background-color: #444451;
+        height: 26px;
+        width: 32px;
+        margin: 3px;
+        font-size: 50px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        cursor: pointer;
+      }
+/* } */
 
 .seat:hover{
     background-color: green;
@@ -80,7 +90,9 @@ mat-icon {
 
 .seat-block {
     display: flex;
-    background-color: #FAFAFA;
+    /* background-color: #FAFAFA; */
+    background-color: #242333;
+  color: #fff;
     width: auto;
     perspective: 1000px;
     margin-bottom: 30px;
@@ -91,26 +103,35 @@ mat-icon {
 
 .seatNumber{
     font-size: xx-small;
-    color: black;
+    color: white;
 }
 
 .screen {
-    background-color: #DAE7FC;
+    /* background-color: #DAE7FC;
     border: 1px solid #DAE7FC;
     height: 100px;
     width: 50%;
     margin: 15px 0;
     transform: rotateX(-48deg);
-    box-shadow: 0 3px 10px #DAE7FC;
+    box-shadow: 0 3px 10px #DAE7FC; */
+    
+    background-color: #fff;
+  height: 120px;
+  width: 80%;
+  margin: 15px 0;
+  transform: rotateX(-48deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+
 }
 
 
 .seatMap {
-    background-color: #FAFAFA;
+    /* background-color: #FAFAFA; */
+    background-color: #242333;
 }
 
 .screen-text{
-    color: black;
+    color: white;
     font-size: 12px;
 }
 

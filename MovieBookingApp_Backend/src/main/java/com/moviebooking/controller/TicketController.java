@@ -32,7 +32,7 @@ public class TicketController {
     Logger logger = LoggerFactory.getLogger(TicketController.class);
 
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('User')")
+//    @PreAuthorize("hasAuthority('User')")
     public ResponseEntity<?> bookTicket(@RequestHeader("Authorization") String token, @RequestBody Ticket ticket) {
         try {
             String userName = jwtService.extractUsername(token.substring(7));
