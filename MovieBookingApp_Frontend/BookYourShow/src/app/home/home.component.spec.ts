@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NGXLogger } from 'ngx-logger';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -24,7 +25,7 @@ describe('HomeComponent', () => {
         BrowserAnimationsModule
       ],
       declarations: [HomeComponent],
-      providers:[ApiServiceService]
+      providers:[ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;

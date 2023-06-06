@@ -3,6 +3,7 @@ import forgot from '../model/forgot';
 import { ApiServiceService } from '../services/api-service.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-forgot',
@@ -15,7 +16,8 @@ export class ForgotComponent {
   userName: any = '';
   passwordComp: forgot;
 
-  constructor(private api: ApiServiceService, private router: Router
+  constructor(private api: ApiServiceService, private router: Router,
+    private logger : NGXLogger
   ) {
 
     this.passwordComp = new forgot(
@@ -33,6 +35,7 @@ export class ForgotComponent {
           icon:'success'
         });
         console.log(response);
+        this.logger.info('Your password is changed!');
         this.router.navigate(['/login']);
       },
       (error) => {
@@ -40,6 +43,7 @@ export class ForgotComponent {
           title:error.error,
           icon:'error'
         });
+        this.logger.error(error.error);
         console.log(error);
       }
     )

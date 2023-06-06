@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
     private api: ApiServiceService,
     private router:Router,
     private auth:AuthService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private logger  :NGXLogger
   ) { }
   ngOnInit(): void {
     this.getAllMovies();
@@ -54,9 +56,11 @@ export class HomeComponent implements OnInit {
       (response) => {
         console.log(response);
         this.allMovies = response;
+        this.logger.info('Movies found');
       }, (error) => {
         this.snack.open(error.error, 'Dismiss');
         console.log(error);
+        this.logger.error(error);
       }
     )
   }

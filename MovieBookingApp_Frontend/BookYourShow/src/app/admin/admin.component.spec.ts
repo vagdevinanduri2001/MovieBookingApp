@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { NGXLogger } from 'ngx-logger';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -24,7 +25,7 @@ describe('AdminComponent', () => {
         MatMenuModule,
         MatTableModule],
       declarations: [AdminComponent],
-      providers: [ApiServiceService]
+      providers: [ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;

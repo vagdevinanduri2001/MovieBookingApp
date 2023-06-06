@@ -5,6 +5,7 @@ import { ApiServiceService } from '../services/api-service.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { NGXLogger } from 'ngx-logger';
 
 describe('MyTicketsComponent', () => {
   let component: MyTicketsComponent;
@@ -18,7 +19,7 @@ describe('MyTicketsComponent', () => {
         MatGridListModule
       ],
       declarations: [MyTicketsComponent],
-      providers: [ApiServiceService]
+      providers: [ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(MyTicketsComponent);
     component = fixture.componentInstance;

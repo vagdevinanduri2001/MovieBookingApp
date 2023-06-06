@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { NGXLogger } from 'ngx-logger';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -24,7 +25,7 @@ describe('LoginComponent', () => {
         MatIconModule
       ],
       declarations: [LoginComponent],
-      providers:[ApiServiceService]
+      providers:[ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;

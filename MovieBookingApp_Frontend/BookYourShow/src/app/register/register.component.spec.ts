@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NGXLogger } from 'ngx-logger';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -23,7 +24,7 @@ describe('RegisterComponent', () => {
       BrowserAnimationsModule
       ],
       declarations: [RegisterComponent],
-      providers:[ApiServiceService]
+      providers:[ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;

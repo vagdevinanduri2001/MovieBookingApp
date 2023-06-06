@@ -3,6 +3,7 @@ import { NgForm, NgModel } from '@angular/forms';
 import { ApiServiceService } from '../services/api-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-forgot-password',
@@ -18,7 +19,8 @@ export class ForgotPasswordComponent {
   constructor(
     private api: ApiServiceService,
     private snack : MatSnackBar,
-    private router : Router
+    private router : Router,
+    private logger : NGXLogger
   ) { }
 
   public forgot(forgotForm: NgForm) {
@@ -26,10 +28,12 @@ export class ForgotPasswordComponent {
       (response) => {
         console.log(response);
         this.snack.open('Password reset','Done');
+        this.logger.info('Password reset');
         this.router.navigate(['/profile']);
       },
       (error) => {
         console.log(error);
+        this.logger.error(error.error);
         alert('Check your userName');
       }
     )

@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiServiceService } from '../services/api-service.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NGXLogger } from 'ngx-logger';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -27,7 +28,7 @@ describe('ForgotPasswordComponent', () => {
         MatInputModule
       ],
       declarations: [ForgotPasswordComponent],
-      providers: [ApiServiceService]
+      providers: [ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(ForgotPasswordComponent);
     component = fixture.componentInstance;

@@ -5,6 +5,7 @@ import movieId from '../model/movieId';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-add-movie',
@@ -16,7 +17,8 @@ export class AddMovieComponent {
   movie: Movie;
 
   constructor(private api: ApiServiceService,private router:Router,
-    private snack:MatSnackBar
+    private snack:MatSnackBar,
+    private logger: NGXLogger
   ) {
 
     this.movie = new Movie(
@@ -31,6 +33,7 @@ export class AddMovieComponent {
         console.log(response);
         this.snack.open('Movie Added successfully!','Ok');
         this.router.navigate(['/admin']);
+        this.logger.info('Movie Added successfully!');
       },
       (error) => {
         Swal.fire({
@@ -38,6 +41,7 @@ export class AddMovieComponent {
           icon:'warning'
         })
         console.log(error);
+        this.logger.error(error.error);
       }
     );
   }

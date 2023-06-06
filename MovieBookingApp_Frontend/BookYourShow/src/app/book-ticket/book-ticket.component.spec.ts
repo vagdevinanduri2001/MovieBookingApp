@@ -5,6 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ApiServiceService } from '../services/api-service.service';
 import { AuthService } from '../services/auth.service';
 import { MatIconModule } from '@angular/material/icon';
+import { NGXLogger } from 'ngx-logger';
 
 describe('BookTicketComponent', () => {
   let component: BookTicketComponent;
@@ -20,7 +21,8 @@ describe('BookTicketComponent', () => {
       ],
       declarations: [BookTicketComponent],
       providers:[ApiServiceService,
-        {provide:AuthService,useValue:authSpy}
+        {provide:AuthService,useValue:authSpy},
+        {provide: NGXLogger, useClass: class {}}
       ]
     });
 

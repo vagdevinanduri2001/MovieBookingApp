@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
     private apiService:ApiServiceService,
     private auth:AuthService,
     private router:Router,
-    private snack : MatSnackBar
+    private snack : MatSnackBar,
+    private logger : NGXLogger
     ){}
 
   loginData = this.fb.group(
@@ -35,14 +37,17 @@ login(loginForm:NgForm){
       this.auth.setUserName(response.customer.userName);
       const role = response.customer.role;
       if(role==='Admin'){
+        this.logger.info('Admin Logged in');
         this.router.navigate(['/admin']);
       }else{
+        this.logger.info('User Logged in');
         this.router.navigate(['/']);
       }
     },
     (error)=>{
       alert("Please check your userName and password")
       console.log(error);
+      this.logger.info(error);
     }
   )
 }

@@ -3,6 +3,7 @@ import { ApiServiceService } from '../services/api-service.service';
 import { Movie } from '../model/movie';
 import movieId from '../model/movieId';
 import Swal from 'sweetalert2';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-my-tickets',
@@ -16,7 +17,8 @@ export class MyTicketsComponent implements OnInit{
   breakpoint!: number;
 
   constructor(
-    private api : ApiServiceService
+    private api : ApiServiceService,
+    private logger : NGXLogger
   ){}
 
   ngOnInit(): void {
@@ -49,9 +51,11 @@ errorMessage='';
         //   this.seats = ticket.seats;
         //   console.log(this.seats[0].movie.imageUrl);
         // });
+        this.logger.info('tickets found');
         },
       (error:any)=>{
         this.errorMessage = error.error;
+        this.logger.error(error.error);
       }
     );
   }

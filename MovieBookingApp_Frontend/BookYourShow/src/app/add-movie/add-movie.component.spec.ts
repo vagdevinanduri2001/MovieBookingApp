@@ -9,6 +9,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NGXLogger } from 'ngx-logger';
+
 
 describe('AddMovieComponent', () => {
   let component: AddMovieComponent;
@@ -25,7 +27,7 @@ describe('AddMovieComponent', () => {
         MatInputModule
       ],
       declarations: [AddMovieComponent],
-      providers: [ApiServiceService]
+      providers: [ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(AddMovieComponent);
     component = fixture.componentInstance;

@@ -3,6 +3,7 @@ import { ApiServiceService } from '../services/api-service.service';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-book-ticket',
@@ -31,7 +32,8 @@ ticket:any = {}
   constructor(
     private api: ApiServiceService,
     private auth: AuthService,
-    private router : Router
+    private router : Router,
+    private logger : NGXLogger
   ) { 
     this.ticket = {
       "movieName": this.auth.getMovie().movieId.movieName,
@@ -92,12 +94,14 @@ ticket:any = {}
           }
         )
         this.router.navigate(['/my-tickets']);
+        this.logger.info('Ticket booked');
       },
       (error) => {
         Swal.fire({
           title:error.error,
           icon:'warning'
         });
+        this.logger.error(error.error);
       }
     )
   }

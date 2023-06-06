@@ -30,8 +30,9 @@ import {MatTableModule} from '@angular/material/table';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
+import { LayoutModule } from '@angular/cdk/layout';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
+import { LoggerModule,NgxLoggerLevel } from 'ngx-logger';
 
 
 @NgModule({
@@ -69,7 +70,10 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
     MatDividerModule,
     MatTableModule,
     MatSnackBarModule,
-    LayoutModule
+    LayoutModule,
+    LoggerModule.forRoot({level:NgxLoggerLevel.INFO,
+      serverLogLevel:NgxLoggerLevel.OFF
+    })
   ],
   providers: [
     ApiServiceService

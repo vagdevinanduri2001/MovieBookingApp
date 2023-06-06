@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatIconModule } from '@angular/material/icon';
+import { NGXLogger } from 'ngx-logger';
 
 describe('ForgotComponent', () => {
   let component: ForgotComponent;
@@ -25,7 +26,7 @@ describe('ForgotComponent', () => {
         MatInputModule
       ],
       declarations: [ForgotComponent],
-      providers: [ApiServiceService]
+      providers: [ApiServiceService,{provide: NGXLogger, useClass: class {}}]
     });
     fixture = TestBed.createComponent(ForgotComponent);
     component = fixture.componentInstance;
